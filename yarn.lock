@@ -302,6 +302,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/swagger-ui-express@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "@types/swagger-ui-express@npm:4.1.3"
+  dependencies:
+    "@types/express": "*"
+    "@types/serve-static": "*"
+  checksum: 1c990fa8c158f699c5443245383daef2c4b47efce715c105e67f9b88447cf23663774393fdeea7d5a6e97a83d6959b09129f19c4abca64abdb7db74517162295
+  languageName: node
+  linkType: hard
+
 "@types/uuid@npm:^9.0.0":
   version: 9.0.0
   resolution: "@types/uuid@npm:9.0.0"
@@ -2034,6 +2044,7 @@ __metadata:
   dependencies:
     "@types/express": ^4.17.15
     "@types/multer": ^1.4.7
+    "@types/swagger-ui-express": ^4.1.3
     "@types/uuid": ^9.0.0
     "@typescript-eslint/eslint-plugin": ^4.16.0
     "@typescript-eslint/parser": ^4.16.0
@@ -2048,6 +2059,7 @@ __metadata:
     express: ^4.18.2
     multer: ^1.4.5-lts.1
     prettier: ^2.8.1
+    swagger-ui-express: ^4.6.0
     ts-node-dev: ^2.0.0
     typescript: ^4.9.4
     uuid: ^9.0.0
@@ -3641,6 +3653,24 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"swagger-ui-dist@npm:>=4.11.0":
+  version: 4.15.5
+  resolution: "swagger-ui-dist@npm:4.15.5"
+  checksum: b032ecc1245e10729d0fb0fc681fc61115a78925b9410fe0fa5fe025a0a3e7d1505dacc3b5d7d2355835d118162843ad9a754a810010a4bbf65ef71466e40512
+  languageName: node
+  linkType: hard
+
+"swagger-ui-express@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "swagger-ui-express@npm:4.6.0"
+  dependencies:
+    swagger-ui-dist: ">=4.11.0"
+  peerDependencies:
+    express: ">=4.0.0"
+  checksum: 8e5e2bf431f4b2207fc4c07eeaee78ec983fae4ab14b6df8fd6d87bd7edf0a9c644bf32bb251b8478a9bad7b1617d6bec56c6b87208f5eddb18840832abf55a3
   languageName: node
   linkType: hard
 
