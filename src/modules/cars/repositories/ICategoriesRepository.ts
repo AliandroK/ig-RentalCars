@@ -1,6 +1,6 @@
 // DTO - Data transfer object
 
-import { Category } from "../model/category";
+import { Category } from "../entities/category";
 
 interface ICategoryRepositoryDTO {
   name: string;
@@ -8,9 +8,9 @@ interface ICategoryRepositoryDTO {
 }
 
 interface ICategoriesRepositiry {
-  findbyname(name: string): Category;
-  create({ name, description }: ICategoryRepositoryDTO): void;
-  list(): Category[];
+  findbyname(name: string): Promise<Category>;
+  create({ name, description }: ICategoryRepositoryDTO): Promise<void>;
+  list(): Promise<Category[]>;
 }
 
 export { ICategoriesRepositiry, ICategoryRepositoryDTO };

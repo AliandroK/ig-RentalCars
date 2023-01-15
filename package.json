@@ -4,7 +4,9 @@
   "license": "MIT",
   "packageManager": "yarn@3.3.1",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "migration:run": "yarn typeorm migration:run -d ./src/database/typeorm.ts"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",

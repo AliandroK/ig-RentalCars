@@ -6,9 +6,11 @@ import { DataSource } from "typeorm";
 
 export const myDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: "database_ig",
   port: 5432,
   username: "docker",
   password: "ignite",
   database: "igrentalcars",
+  migrations: ["./src/database/migrations/*.ts"],
+  entities: ["./src/modules/cars/entities/*.ts"],
 });

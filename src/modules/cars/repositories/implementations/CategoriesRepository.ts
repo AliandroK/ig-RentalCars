@@ -1,45 +1,55 @@
-import { Category } from "../../model/category";
+import { Repository } from "typeorm";
+
+import { myDataSource } from "../../../../database";
+import { Category } from "../../entities/category";
 import {
   ICategoriesRepositiry,
   ICategoryRepositoryDTO,
 } from "../ICategoriesRepository";
 
 class CategoryRepository implements ICategoriesRepositiry {
-  private categories: Category[];
+  private categoryRepository: Repository<Category>;
 
   // singleton
-  private static INSTANCE: CategoryRepository;
+  // private static INSTANCE: CategoryRepository;
 
-  private constructor() {
-    this.categories = [];
+  constructor() {
+    this.categoryRepository = myDataSource.getRepository(Category);
   }
 
-  public static getInstance(): CategoryRepository {
-    if (!CategoryRepository.INSTANCE) {
-      CategoryRepository.INSTANCE = new CategoryRepository();
-    }
+  // public static getInstance(): CategoryRepository {
+  //   if (!CategoryRepository.INSTANCE) {
+  //     CategoryRepository.INSTANCE = new CategoryRepository();
+  //   }
 
-    return CategoryRepository.INSTANCE;
-  }
+  //   return CategoryRepository.INSTANCE;
+  // }
 
-  create({ name, description }: ICategoryRepositoryDTO): void {
-    const category = new Category();
-    // object assigned funciona mesmo se a variavel for uma const
-    Object.assign(category, {
+  async create({ name, description }: ICategoryRepositoryDTO): Promise<void> {
+    // const category = new Category();
+    // // object assigned funciona mesmo se a variavel for uma const
+    // Object.assign(category, {
+    //   name,
+    //   description,
+    //   created_at: new Date(),
+    // });
+
+    const category = this.categoryRepository.create({
       name,
       description,
-      created_at: new Date(),
     });
 
-    this.categories.push(category);
+    await this.categoryRepository.save(category);
   }
 
-  list(): Category[] {
-    return this.categories;
+  async list(): Promise<Category[]> {
+    const categories = await this.categoryRepository.find();
+    return categories;
   }
 
-  findbyname(name: string): Category {
-    return this.categories.find((category) => category.name === name);
+  async findbyname(name: string): Promise<Category> {
+    const category = await this.categoryRepository.findOneBy({ name });
+    return category;
   }
 }
 
