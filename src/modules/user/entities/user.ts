@@ -10,8 +10,8 @@ class User {
   @Column()
   name: string;
 
-  @Column()
-  userName: string;
+  // @Column()
+  // userName: string;
 
   @Column()
   password: string;
