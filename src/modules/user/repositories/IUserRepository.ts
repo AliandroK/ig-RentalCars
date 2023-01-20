@@ -3,7 +3,7 @@ import { IUserDTO } from "../userDTO/IUserDTO";
 
 interface IUserRepository {
   create(data: IUserDTO): Promise<void>;
-  findUserByEmail(email: string): Promise<User>;
+  findUserByEmail(Email: string): Promise<User>;
 }
 
 export { IUserRepository };

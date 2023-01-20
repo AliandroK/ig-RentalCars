@@ -12,5 +12,8 @@ export const myDataSource = new DataSource({
   password: "ignite",
   database: "igrentalcars",
   migrations: ["./src/database/migrations/*.ts"],
-  entities: ["./src/modules/cars/entities/*.ts"],
+  entities: [
+    "./src/modules/cars/entities/*.ts",
+    "./src/modules/user/entities/*.ts",
+  ],
 });
