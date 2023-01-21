@@ -31,6 +31,8 @@ export default async function (
       throw new AppError("Token invalid!", 401);
     }
 
+    request.user = user;
+
     next();
   } catch {
     throw new AppError("Token is invalid!", 401);
