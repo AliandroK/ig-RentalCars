@@ -1,6 +1,6 @@
 // DTO - Data transfer object
 
-import { Category } from "../entities/category";
+import { Category } from "../infra/typeorm/entities/category";
 
 interface ICategoryRepositoryDTO {
   name: string;

@@ -2,11 +2,12 @@ import express, { NextFunction, Request, Response } from "express";
 import swaggerUI from "swagger-ui-express";
 
 import "express-async-errors";
-import { myDataSource } from "./database";
-import "./shared/container";
-import { AppError } from "./errors/AppError";
+import { myDataSource } from "@shared/infra/typeorm/";
+
+import "../../container";
+import swaggerFile from "../../../swagger.json";
+import { AppError } from "../../errors/AppError";
 import { router } from "./routes";
-import swaggerFile from "./swagger.json";
 
 myDataSource.initialize();
 

@@ -1,11 +1,11 @@
 import { Repository } from "typeorm";
 
-import { myDataSource } from "../../../../database";
-import { Specification } from "../../entities/specification";
+import { Specification } from "@modules/cars/infra/typeorm/entities/specification";
 import {
   ISpecificationDTO,
   ISpecificationRepository,
-} from "../ISpecificationsRepository";
+} from "@modules/cars/repositories/ISpecificationsRepository";
+import { myDataSource } from "@shared/infra/typeorm";
 
 class SpecificationsRepository implements ISpecificationRepository {
   // private Specifications: Specification[];
