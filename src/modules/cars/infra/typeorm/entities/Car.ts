@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -11,7 +12,7 @@ import { Category } from "./category";
 
 @Entity("Car")
 class Car {
-  @Column()
+  @PrimaryColumn()
   id: string;
 
   @Column()

@@ -11,9 +11,9 @@ export const myDataSource = new DataSource({
   username: "docker",
   password: "ignite",
   database: "igrentalcars",
-  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
+  migrations: ["./src/shared/infra/typeorm/migrations/*.{ts,js}"],
   entities: [
-    "./src/modules/cars/infra/typeorm/entities/*.ts",
-    "./src/modules/user/infra/typeorm/entities/*.ts",
+    "./src/modules/cars/infra/typeorm/entities/*.{ts,js}",
+    "./src/modules/user/infra/typeorm/entities/*.{ts,js}",
   ],
 });

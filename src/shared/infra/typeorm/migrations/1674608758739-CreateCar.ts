@@ -40,7 +40,7 @@ export class CreateCar1674608758739 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "categoty_id",
+            name: "category_id",
             type: "uuid",
             isNullable: true,
           },
@@ -56,7 +56,7 @@ export class CreateCar1674608758739 implements MigrationInterface {
             name: "FK_CAR_CATEGORIES",
             referencedTableName: "categories",
             referencedColumnNames: ["id"],
-            columnNames: ["categoty_id"],
+            columnNames: ["category_id"],
             onDelete: "SET NULL",
             onUpdate: "SET NULL",
           },
