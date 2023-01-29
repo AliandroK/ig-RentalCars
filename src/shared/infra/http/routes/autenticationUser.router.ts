@@ -6,9 +6,6 @@ const autenticationUserRouter = Router();
 
 const autenticationUserController = new AutenticationUserController();
 
-autenticationUserRouter.post(
-  "/autentication",
-  autenticationUserController.handle
-);
+autenticationUserRouter.post("/", autenticationUserController.handle);
 
 export { autenticationUserRouter };

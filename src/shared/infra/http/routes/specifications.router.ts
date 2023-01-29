@@ -1,13 +1,18 @@
 import { Router } from "express";
 
-import ensureAuthentication from "../middlewares/ensureAuthentication";
 import { CreateSpecificationController } from "../../../../modules/cars/useCases/createSpecification/CreateSpecificationController";
+import ensureAdminUser from "../middlewares/ensureAdminUser";
+import ensureAuthentication from "../middlewares/ensureAuthentication";
 
 const SpecificationRouter = Router();
 
 const createSpecificationController = new CreateSpecificationController();
 
-SpecificationRouter.use(ensureAuthentication);
-SpecificationRouter.post("/", createSpecificationController.handle);
+SpecificationRouter.post(
+  "/",
+  ensureAuthentication,
+  ensureAdminUser,
+  createSpecificationController.handle
+);
 
 export { SpecificationRouter };

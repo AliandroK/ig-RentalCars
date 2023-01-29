@@ -35,6 +35,31 @@ class CarRepositoryInMemory implements ICarRepository {
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.cars.find((car) => car.license_plate === license_plate);
   }
+
+  async findAvailableCars(
+    category_id?: string,
+    brand?: string,
+    name?: string
+  ): Promise<Car[]> {
+    return this.cars.filter((car) => {
+      if (car.available === true) {
+        if (category_id && category_id === car.category_id) {
+          return car;
+        }
+
+        if (brand && brand === car.brand) {
+          return car;
+        }
+
+        if (name && name === car.name) {
+          return car;
+        }
+
+        return car;
+      }
+      return null;
+    });
+  }
 }
 
 export { CarRepositoryInMemory };

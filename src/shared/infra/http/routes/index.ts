@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import ensureAdminUser from "../middlewares/ensureAdminUser";
+import ensureAuthentication from "../middlewares/ensureAuthentication";
 import { autenticationUserRouter } from "./autenticationUser.router";
 import { carRoutes } from "./car.router";
 import { categoriesRouter } from "./categories.router";
@@ -12,6 +14,6 @@ router.use("/categories", categoriesRouter);
 router.use("/specifications", SpecificationRouter);
 router.use("/user", userRouter);
 router.use("/cars", carRoutes);
-router.use(autenticationUserRouter);
+router.use("/autentication", autenticationUserRouter);
 
 export { router };

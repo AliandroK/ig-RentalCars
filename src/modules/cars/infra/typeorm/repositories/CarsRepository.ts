@@ -40,6 +40,14 @@ class CarsRepository implements ICarRepository {
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.carsRepository.findOneBy({ license_plate });
   }
+
+  findAvailableCars(
+    category_id?: string,
+    brand?: string,
+    name?: string
+  ): Promise<Car[]> {
+    throw new Error("Method not implemented.");
+  }
 }
 
 export { CarsRepository };
