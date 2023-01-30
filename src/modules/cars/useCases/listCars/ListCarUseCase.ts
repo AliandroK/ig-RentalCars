@@ -9,7 +9,7 @@ interface IRequest {
   category_id?: string;
 }
 
-injectable();
+@injectable()
 class ListCarUseCase {
   constructor(
     @inject("CarsRepository")

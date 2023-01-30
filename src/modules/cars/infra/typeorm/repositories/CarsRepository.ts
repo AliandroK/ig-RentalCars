@@ -41,12 +41,36 @@ class CarsRepository implements ICarRepository {
     return this.carsRepository.findOneBy({ license_plate });
   }
 
-  findAvailableCars(
+  async findAvailableCars(
     category_id?: string,
     brand?: string,
     name?: string
   ): Promise<Car[]> {
-    throw new Error("Method not implemented.");
+    const query = this.carsRepository
+      .createQueryBuilder("car")
+      .where(" available = :available", { available: true });
+
+    if (brand) {
+      query.andWhere(" brand = :brand ", { brand });
+    }
+
+    if (name) {
+      query.andWhere("name = :name", { name });
+    }
+
+    if (category_id) {
+      query.andWhere("category_id = :categoryid", { categoryid: category_id });
+    }
+
+    const cars = await query.getMany();
+
+    return cars;
+  }
+
+  async findCarById(car_id: string): Promise<Car> {
+    const car = await this.carsRepository.findOneBy({ id: car_id });
+
+    return car;
   }
 }
 

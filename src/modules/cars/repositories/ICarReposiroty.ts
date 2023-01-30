@@ -9,6 +9,7 @@ interface ICarRepository {
     brand?: string,
     name?: string
   ): Promise<Car[]>;
+  findCarById(car_id: string): Promise<Car>;
 }
 
 export { ICarRepository };
