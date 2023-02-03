@@ -6,7 +6,7 @@ import {
 } from "../ISpecificationsRepository";
 
 class SpecificationRepositoryInMemory implements ISpecificationRepository {
-  private specificationsRepository: Specification[];
+  private specificationsRepository: Specification[] = [];
 
   async create({
     name,
@@ -14,7 +14,7 @@ class SpecificationRepositoryInMemory implements ISpecificationRepository {
   }: ISpecificationDTO): Promise<Specification> {
     const specification = new Specification();
 
-    Object.assign(specification, [name, description]);
+    Object.assign(specification, { name, description });
 
     this.specificationsRepository.push(specification);
 

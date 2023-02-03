@@ -31,9 +31,17 @@ class CreateCarSpecificationUseCase {
       specifications_id
     );
 
-    carsExists.specification = specifications;
-
-    const car = await this.carsRepository.create(carsExists);
+    const car = await this.carsRepository.create({
+      category_id: carsExists.category_id,
+      brand: carsExists.brand,
+      daily_rate: carsExists.daily_rate,
+      description: carsExists.description,
+      fine_amount: carsExists.fine_amount,
+      license_plate: carsExists.license_plate,
+      name: carsExists.name,
+      id: carsExists.id,
+      specifications,
+    });
 
     return car;
   }

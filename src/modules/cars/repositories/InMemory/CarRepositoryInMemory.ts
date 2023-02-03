@@ -14,18 +14,33 @@ class CarRepositoryInMemory implements ICarRepository {
     fine_amount,
     daily_rate,
     category_id,
+    id,
+    specifications,
   }: ICarDTO): Promise<Car> {
-    const newCar = new Car();
+    let newCar;
+    if (id) {
+      newCar = this.findCarById(id);
+      newCar = this.cars.splice(this.cars.indexOf(newCar, 0), 1);
 
-    Object.assign(newCar, {
-      name,
-      description,
-      license_plate,
-      brand,
-      fine_amount,
-      daily_rate,
-      category_id,
-    });
+      Object.assign(newCar, {
+        specification: specifications,
+      });
+
+      console.log(newCar);
+    } else {
+      newCar = new Car();
+
+      Object.assign(newCar, {
+        name,
+        description,
+        license_plate,
+        brand,
+        fine_amount,
+        daily_rate,
+        category_id,
+        specification: specifications,
+      });
+    }
 
     this.cars.push(newCar);
 
