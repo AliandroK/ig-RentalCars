@@ -22,7 +22,6 @@ services:
       - 3333:3333
     volumes:
       - .:/user/app
-      - node_modules:/user/app/node_modules
     links: 
       - database_ig
     depends_on: 
@@ -33,7 +32,7 @@ services:
 volumes:
   pgdata:
     driver: local
-  node_modules: {}  
+    
   
 
     

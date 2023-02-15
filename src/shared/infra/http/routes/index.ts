@@ -5,6 +5,7 @@ import ensureAuthentication from "../middlewares/ensureAuthentication";
 import { autenticationUserRouter } from "./autenticationUser.router";
 import { carRoutes } from "./car.router";
 import { categoriesRouter } from "./categories.router";
+import { rentalRoutes } from "./rental.routes";
 import { SpecificationRouter } from "./specifications.router";
 import { userRouter } from "./user.router";
 
@@ -15,5 +16,6 @@ router.use("/specifications", SpecificationRouter);
 router.use("/user", userRouter);
 router.use("/cars", carRoutes);
 router.use("/autentication", autenticationUserRouter);
+router.use("/rentals", rentalRoutes);
 
 export { router };

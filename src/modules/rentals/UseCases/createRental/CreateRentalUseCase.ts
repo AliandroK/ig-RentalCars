@@ -1,11 +1,9 @@
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+import { inject, injectable } from "tsyringe";
 
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalRepository } from "@modules/rentals/repositories/IRentalRepository";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppError";
-
-dayjs.extend(utc);
 
 interface IRequest {
   user_id: string;
@@ -13,8 +11,15 @@ interface IRequest {
   expected_return_date: Date;
 }
 
+@injectable()
 class CreateRentalUseCase {
-  constructor(private rentalsRepository: IRentalRepository) {}
+  constructor(
+    @inject("RentalRepository")
+    private rentalsRepository: IRentalRepository,
+
+    @inject("DayjsDateProvider")
+    private dateProvider: IDateProvider
+  ) {}
 
   async execute({
     user_id,
@@ -37,14 +42,10 @@ class CreateRentalUseCase {
       throw new AppError("There is a rental in progress for user!");
     }
 
-    const expectReturnDateFormat = dayjs(expected_return_date)
-      .utc()
-      .local()
-      .format();
-
-    const dateNow = dayjs().utc().local().format();
-
-    const compare = dayjs(expectReturnDateFormat).diff(dateNow, "hour");
+    const compare = this.dateProvider.compareInHours(
+      this.dateProvider.datenow(),
+      expected_return_date
+    );
 
     if (compare < 24) {
       throw new AppError(
