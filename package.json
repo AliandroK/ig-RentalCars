@@ -7,10 +7,11 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "migration:run": "yarn typeorm migration:run -d ./src/shared/infra/typeorm/typeorm.ts",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "create_user_seed": "ts-node-dev ./src/shared/infra/typeorm/createUserSeed"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.12",
     "bcryptjs": "^2.4.3",
     "csv-parser": "^3.0.0",
     "dayjs": "^1.11.7",
@@ -20,6 +21,7 @@
     "multer": "^1.4.5-lts.1",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^6.3.3",
     "swagger-ui-express": "^4.6.0",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.11",

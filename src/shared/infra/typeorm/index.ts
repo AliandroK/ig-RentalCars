@@ -6,14 +6,16 @@ import { DataSource } from "typeorm";
 
 export const myDataSource = new DataSource({
   type: "postgres",
-  host: "database_ig",
+  host: process.env.NODE_ENV === "test" ? "localhost" : "database_ig",
   port: 5432,
   username: "docker",
   password: "ignite",
-  database: "igrentalcars",
+  database:
+    process.env.NODE_ENV === "test" ? "test_igrentalcars" : "igrentalcars",
   migrations: ["./src/shared/infra/typeorm/migrations/*.{ts,js}"],
   entities: [
     "./src/modules/cars/infra/typeorm/entities/*.{ts,js}",
     "./src/modules/user/infra/typeorm/entities/*.{ts,js}",
+    "./src/modules/rentals/infra/typeorm/entities/*.{ts,js}",
   ],
 });
