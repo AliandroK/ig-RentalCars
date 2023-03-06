@@ -25,8 +25,6 @@ class CarRepositoryInMemory implements ICarRepository {
       Object.assign(newCar, {
         specification: specifications,
       });
-
-      console.log(newCar);
     } else {
       newCar = new Car();
 
@@ -78,6 +76,12 @@ class CarRepositoryInMemory implements ICarRepository {
 
   async findCarById(car_id: string): Promise<Car> {
     return this.cars.find((car) => car.id === car_id);
+  }
+
+  async updateAvailable(id: string, available: boolean): Promise<void> {
+    const car = this.cars.find((car) => car.id === id);
+
+    car.available = available;
   }
 }
 

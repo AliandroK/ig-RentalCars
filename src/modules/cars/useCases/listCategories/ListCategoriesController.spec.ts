@@ -11,9 +11,12 @@ let connection: DataSource;
 
 describe("List Categories Controller", () => {
   beforeAll(async () => {
-    console.log("caiu aqui list");
+    console.log("inicando list category");
     connection = await myDataSourceMigrations;
+
     await connection.initialize();
+    console.log(connection);
+    await connection.dropDatabase();
     await connection.runMigrations();
     const id = uuidV4();
     const password = await hash("admin", 8);
@@ -36,6 +39,7 @@ describe("List Categories Controller", () => {
   });
 
   afterAll(async () => {
+    console.log("finaliznado list category");
     await connection.dropDatabase();
     await connection.destroy();
   });
@@ -57,7 +61,7 @@ describe("List Categories Controller", () => {
 
     const response = await request(app).get("/categories");
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
     expect(response.body.lenght).toBe(1);
     expect(response.body[0]).toHaveProperty("id");
     expect(response.body[0].name).toEqual("category test");

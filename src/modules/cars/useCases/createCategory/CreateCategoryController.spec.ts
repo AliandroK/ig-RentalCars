@@ -11,9 +11,11 @@ let connection: DataSource;
 
 describe("Create Category Controller", () => {
   beforeAll(async () => {
+    console.log("iniciando create category");
     connection = await myDataSourceMigrations;
     await connection.initialize();
-
+    console.log(connection);
+    await connection.dropDatabase();
     await connection.runMigrations();
 
     const id = uuidV4();
@@ -37,7 +39,7 @@ describe("Create Category Controller", () => {
   });
 
   afterAll(async () => {
-    console.log("caiu aqui cc");
+    console.log("finalizando create category");
     await connection.dropDatabase();
     await connection.destroy();
   });
